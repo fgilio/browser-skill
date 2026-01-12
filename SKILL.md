@@ -3,7 +3,9 @@ name: browser
 description: >
   Chrome browser automation via CDP.
   Use for: web scraping, frontend testing, page inspection, element selection.
-  Trigger words: browser, chrome, scrape, screenshot, pick element, cookies, navigate, evaluate.
+  Keywords: browser, chrome, scrape, screenshot, pick element, cookies, navigate, evaluate.
+user-invocable: true
+disable-model-invocation: false
 ---
 
 # Browser Skill
