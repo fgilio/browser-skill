@@ -1,0 +1,26 @@
+{
+  "name": "browser-skill",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Chrome browser automation via CDP for Claude Code",
+  "bin": {
+    "browser-start": "./scripts/browser-start.ts",
+    "browser-navigate": "./scripts/browser-navigate.ts",
+    "browser-evaluate": "./scripts/browser-evaluate.ts",
+    "browser-screenshot": "./scripts/browser-screenshot.ts",
+    "browser-pick": "./scripts/browser-pick.ts",
+    "browser-cookies": "./scripts/browser-cookies.ts",
+    "browser-search": "./scripts/browser-search.ts",
+    "browser-content": "./scripts/browser-content.ts"
+  },
+  "dependencies": {
+    "puppeteer-core": "^23.11.1",
+    "@mozilla/readability": "^0.6.0",
+    "jsdom": "^27.0.1",
+    "turndown": "^7.2.2",
+    "turndown-plugin-gfm": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
