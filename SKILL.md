@@ -119,6 +119,11 @@ browser-evaluate.ts -f ./script.js
 
 Execute JavaScript in the active tab. Supports stdin and file input for complex scripts.
 
+- Simple expressions (`document.title`) return their value automatically
+- Multi-statement code works - use explicit `return` for the final value:
+  `browser-evaluate.ts 'const els = document.querySelectorAll("a"); return els.length'`
+- **CSS selectors with `/`** (e.g. Tailwind `group/resize`): escape as `\\/` in querySelector
+
 **Output:** Returns the evaluation result (string, number, array, object).
 
 ---
