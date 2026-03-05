@@ -65,7 +65,11 @@ try {
 		const AsyncFunction = (async () => {}).constructor as new (
 			...args: string[]
 		) => (...args: unknown[]) => Promise<unknown>;
-		return new AsyncFunction(`return (${c})`)();
+		try {
+			return new AsyncFunction(`return (${c})`)();
+		} catch {
+			return new AsyncFunction(c)();
+		}
 	}, code);
 
 	// Output result based on type
