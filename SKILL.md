@@ -12,7 +12,7 @@ disable-model-invocation: false
 
 Chrome DevTools Protocol tools for agent-assisted web automation. Connect to Chrome on `:9222` with remote debugging.
 
-Scripts location: `~/.claude/skills/browser/scripts/`
+Scripts location: `scripts/` (relative to skill root)
 
 ---
 

@@ -33,7 +33,7 @@ browser-upload ~/file.pdf             # file upload
 ## Install
 
 ```bash
-bun install
+./setup.sh
 ```
 
-Requires Chrome and [Bun](https://bun.sh).
+Requires Chrome and [Bun](https://bun.sh). `setup.sh` runs `bun install` and `bun link` to expose the `browser-*` commands globally.

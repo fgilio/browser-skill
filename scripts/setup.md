@@ -2,18 +2,17 @@
 
 ## Prerequisites
 
-- [bun](https://bun.sh) installed
 - `~/.bun/bin` in PATH (bun setup does this automatically)
 
 ## Install
 
-Run from skill directory:
+Run the setup script from the skill root:
 
 ```bash
-cd ~/.claude/skills/browser && bun link
+./setup.sh
 ```
 
-Requires `~/.bun/bin` in PATH.
+It installs dependencies and links the CLIs globally.
 
 ## Commands
 
@@ -36,6 +35,8 @@ which browser-start && browser-start --help
 
 ## Uninstall
 
+Run from the skill root:
+
 ```bash
-cd ~/.claude/skills/browser && bun unlink
+bun unlink
 ```
