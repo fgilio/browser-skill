@@ -7,6 +7,7 @@ Known limitations and workarounds.
 Complex JavaScript with nested quotes can break when passed as shell arguments.
 
 **Problem:**
+
 ```bash
 # This breaks - nested quotes confuse shell
 browser-evaluate.ts 'document.querySelector("[data-id='test']").click()'
@@ -15,16 +16,19 @@ browser-evaluate.ts 'document.querySelector("[data-id='test']").click()'
 **Solutions:**
 
 1. **Use stdin** (recommended):
+
 ```bash
 echo 'document.querySelector("[data-id=\"test\"]").click()' | browser-evaluate.ts
 ```
 
 2. **Use file**:
+
 ```bash
 browser-evaluate.ts -f ./my-script.js
 ```
 
 3. **Use heredoc**:
+
 ```bash
 cat << 'EOF' | browser-evaluate.ts
 document.querySelector("[data-id='test']").click()
@@ -59,12 +63,14 @@ Cross-origin iframes cannot be accessed due to browser security.
 ## Sites That Block Automation
 
 Some sites detect and block headless browsers. Signs:
+
 - Immediate CAPTCHA
 - "Please enable JavaScript"
 - Empty page content
 - 403/429 responses
 
 **Mitigations:**
+
 - Use `--profile` to appear more legitimate
 - Add delays between actions
 - Use realistic viewport sizes
@@ -73,11 +79,13 @@ Some sites detect and block headless browsers. Signs:
 ## Timeout Handling
 
 Default timeouts:
+
 - General scripts: 30s
 - Search: 60s
 - Pick (interactive): 120s
 
 If hitting timeouts:
+
 - Add delays between rapid actions
 - Check if page is actually loading
 - Verify element exists before interacting
@@ -92,17 +100,20 @@ If hitting timeouts:
 ## CDP Connection Issues
 
 **"Could not connect to browser"**
+
 - Run `browser-start.ts` first
 - Check if port 9222 is in use: `lsof -i :9222`
 - Force restart: `browser-start.ts --force`
 
 **"No active tab found"**
+
 - Browser started but no tabs open
 - Navigate to a URL first: `browser-navigate.ts about:blank`
 
 ## Memory/Performance
 
 Long-running sessions accumulate memory:
+
 - Restart browser periodically: `browser-start.ts --force`
 - Close unused tabs via evaluate: `browser-evaluate.ts 'window.close()'`
 - Screenshots accumulate in /tmp - clean periodically
@@ -134,6 +145,7 @@ select.dispatchEvent(new Event('change', { bubbles: true }));
 ```
 
 Or click to open, then click option:
+
 ```bash
 browser-click.ts "select#country"
 browser-click.ts "option[value='US']"
@@ -148,6 +160,7 @@ checkbox.dispatchEvent(new Event('change', { bubbles: true }));
 ```
 
 Or simply click:
+
 ```bash
 browser-click.ts "input[type=checkbox]#agree"
 ```

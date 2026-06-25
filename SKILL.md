@@ -18,19 +18,19 @@ Scripts location: `scripts/` (relative to skill root)
 
 ## Quick Reference
 
-| Script | Purpose | Output |
-|--------|---------|--------|
-| `browser-start.ts` | Launch Chrome with CDP | Plain text |
-| `browser-navigate.ts` | Navigate to URLs | Plain text |
-| `browser-click.ts` | Click element (auto-waits) | Plain text |
-| `browser-type.ts` | Type into input (React-aware) | Plain text |
-| `browser-upload.ts` | Upload files | Plain text |
-| `browser-evaluate.ts` | Execute JS in page | Flexible |
-| `browser-screenshot.ts` | Capture viewport | File path |
-| `browser-pick.ts` | Interactive element picker | JSON |
-| `browser-cookies.ts` | Get all cookies | JSON |
-| `browser-search.ts` | Google search | JSON |
-| `browser-content.ts` | Extract readable content | Markdown |
+| Script                  | Purpose                       | Output     |
+| ----------------------- | ----------------------------- | ---------- |
+| `browser-start.ts`      | Launch Chrome with CDP        | Plain text |
+| `browser-navigate.ts`   | Navigate to URLs              | Plain text |
+| `browser-click.ts`      | Click element (auto-waits)    | Plain text |
+| `browser-type.ts`       | Type into input (React-aware) | Plain text |
+| `browser-upload.ts`     | Upload files                  | Plain text |
+| `browser-evaluate.ts`   | Execute JS in page            | Flexible   |
+| `browser-screenshot.ts` | Capture viewport              | File path  |
+| `browser-pick.ts`       | Interactive element picker    | JSON       |
+| `browser-cookies.ts`    | Get all cookies               | JSON       |
+| `browser-search.ts`     | Google search                 | JSON       |
+| `browser-content.ts`    | Extract readable content      | Markdown   |
 
 ---
 
@@ -51,6 +51,7 @@ Launch a **separate** Chrome instance with remote debugging on `:9222`. Does NOT
 - `--force` kills only the skill's Chrome instance and restarts
 
 **Output:**
+
 ```
 Chrome started on :9222
 Chrome started on :9222 with profile
@@ -69,6 +70,7 @@ browser-navigate.ts https://example.com --new
 Navigate to URLs. Use `--new` to open in a new tab instead of reusing current tab.
 
 **Output:**
+
 ```
 Navigated to: https://example.com
 Opened: https://example.com
@@ -120,8 +122,7 @@ browser-evaluate.ts -f ./script.js
 Execute JavaScript in the active tab. Supports stdin and file input for complex scripts.
 
 - Simple expressions (`document.title`) return their value automatically
-- Multi-statement code works - use explicit `return` for the final value:
-  `browser-evaluate.ts 'const els = document.querySelectorAll("a"); return els.length'`
+- Multi-statement code works - use explicit `return` for the final value: `browser-evaluate.ts 'const els = document.querySelectorAll("a"); return els.length'`
 - **CSS selectors with `/`** (e.g. Tailwind `group/resize`): escape as `\\/` in querySelector
 
 **Output:** Returns the evaluation result (string, number, array, object).
@@ -137,6 +138,7 @@ browser-screenshot.ts
 Capture current viewport. Returns temporary file path for the agent to read.
 
 **Output:**
+
 ```
 /var/folders/.../screenshot-2025-01-15T10-30-00.png
 ```
@@ -153,11 +155,13 @@ browser-pick.ts "Select the product cards"
 Interactive element picker. Click to select, Cmd/Ctrl+Click for multi-select, Enter to finish, ESC to cancel.
 
 **Use this when:**
+
 - User wants to select specific DOM elements
 - Page structure is complex or ambiguous
 - Building scrapers interactively
 
 **Output (JSON):**
+
 ```json
 [
   {
@@ -182,6 +186,7 @@ browser-cookies.ts
 Get all cookies for the current tab including httpOnly cookies.
 
 **Output (JSON):**
+
 ```json
 [
   {
@@ -207,13 +212,10 @@ browser-search.ts "machine learning" -n 3 --content
 
 Search Google and return results.
 
-**Options:**
-| Option | Description | Default |
-|--------|-------------|---------|
-| `-n <num>` | Number of results | 5 |
-| `--content` | Fetch readable content from each result | false |
+**Options:** | Option | Description | Default | |--------|-------------|---------| | `-n <num>` | Number of results | 5 | | `--content` | Fetch readable content from each result | false |
 
 **Output (JSON):**
+
 ```json
 [
   {
@@ -236,6 +238,7 @@ browser-content.ts https://example.com
 Navigate to URL and extract readable content as markdown. Uses Mozilla Readability.
 
 **Output:**
+
 ```
 URL: https://example.com
 Title: Example Domain
@@ -262,6 +265,7 @@ All scripts return JSON errors to stderr with exit code 1:
 ## Important Notes
 
 **Tab Selection**: All scripts operate on the **last tab** (most recently opened/used). To work with a specific page:
+
 1. Navigate to it first with `browser-navigate.ts`
 2. Or open it in a new tab with `browser-navigate.ts <url> --new`
 

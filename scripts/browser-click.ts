@@ -2,7 +2,13 @@
 // Click elements by CSS selector with smart auto-wait
 // Usage: browser-click.ts <selector>
 
-import { connectBrowser, getActivePage, printUsage, exitError, setupTimeout } from "./lib.ts";
+import {
+  connectBrowser,
+  getActivePage,
+  printUsage,
+  exitError,
+  setupTimeout,
+} from "./lib.ts";
 import { waitForElement } from "./waitForElement.ts";
 
 setupTimeout(30000);
@@ -22,11 +28,11 @@ Examples:
   browser-click.ts "[data-testid='save']"`;
 
 if (args.includes("--help") || args.includes("-h")) {
-	printUsage(USAGE, 0);
+  printUsage(USAGE, 0);
 }
 
 if (args.length === 0) {
-	printUsage(USAGE, 1);
+  printUsage(USAGE, 1);
 }
 
 const selector = args.join(" ");
@@ -35,16 +41,16 @@ const browser = await connectBrowser();
 const page = await getActivePage(browser);
 
 try {
-	// Wait for element to be ready (visible + enabled)
-	const element = await waitForElement(page, selector);
+  // Wait for element to be ready (visible + enabled)
+  const element = await waitForElement(page, selector);
 
-	// Click the element
-	await element.click();
+  // Click the element
+  await element.click();
 
-	console.log(`Clicked: ${selector}`);
+  console.log(`Clicked: ${selector}`);
 } catch (e) {
-	const message = e instanceof Error ? e.message : String(e);
-	exitError(`Click failed: ${message}`);
+  const message = e instanceof Error ? e.message : String(e);
+  exitError(`Click failed: ${message}`);
 } finally {
-	await browser.disconnect();
+  await browser.disconnect();
 }

@@ -24,6 +24,7 @@ browser-type.ts "#search" "query" --clear
 ```
 
 Internally handles:
+
 1. Native value setter bypass
 2. Event dispatching (input, change, blur)
 3. Auto-wait for element
@@ -74,16 +75,13 @@ The events (`input`, `change`, `blur`) trigger React's synthetic event handlers,
 
 ## Framework-Specific Notes
 
-**React**: Needs `input` event with `bubbles: true`
-**Vue**: Same pattern works, v-model listens to `input`
-**Svelte**: bind:value uses `input` event
-**Angular**: May need additional `ngModelChange` dispatch
+**React**: Needs `input` event with `bubbles: true` **Vue**: Same pattern works, v-model listens to `input` **Svelte**: bind:value uses `input` event **Angular**: May need additional `ngModelChange` dispatch
 
 ## When to Use browser-evaluate.ts vs browser-type.ts
 
-| Scenario | Use |
-|----------|-----|
-| Simple text input | `browser-type.ts` |
-| Custom event handling | `browser-evaluate.ts` with stdin |
-| Contenteditable | `browser-evaluate.ts` (set innerHTML) |
-| Complex multi-step | `browser-evaluate.ts -f script.js` |
+| Scenario              | Use                                   |
+| --------------------- | ------------------------------------- |
+| Simple text input     | `browser-type.ts`                     |
+| Custom event handling | `browser-evaluate.ts` with stdin      |
+| Contenteditable       | `browser-evaluate.ts` (set innerHTML) |
+| Complex multi-step    | `browser-evaluate.ts -f script.js`    |

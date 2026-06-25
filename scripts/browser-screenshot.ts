@@ -4,7 +4,13 @@
 
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { connectBrowser, getActivePage, printUsage, exitError, setupTimeout } from "./lib.ts";
+import {
+  connectBrowser,
+  getActivePage,
+  printUsage,
+  exitError,
+  setupTimeout,
+} from "./lib.ts";
 
 setupTimeout(30000);
 
@@ -18,11 +24,11 @@ Example:
   browser-screenshot.ts`;
 
 if (args.includes("--help") || args.includes("-h")) {
-	printUsage(USAGE, 0);
+  printUsage(USAGE, 0);
 }
 
 if (args.length > 0 && !args[0].startsWith("-")) {
-	exitError(`Unknown argument: ${args[0]}`);
+  exitError(`Unknown argument: ${args[0]}`);
 }
 
 const browser = await connectBrowser();
@@ -33,11 +39,11 @@ const filename = `screenshot-${timestamp}.png`;
 const filepath = join(tmpdir(), filename);
 
 try {
-	await page.screenshot({ path: filepath });
-	console.log(filepath);
+  await page.screenshot({ path: filepath });
+  console.log(filepath);
 } catch (e) {
-	const message = e instanceof Error ? e.message : String(e);
-	exitError(`Screenshot failed: ${message}`);
+  const message = e instanceof Error ? e.message : String(e);
+  exitError(`Screenshot failed: ${message}`);
 } finally {
-	await browser.disconnect();
+  await browser.disconnect();
 }
