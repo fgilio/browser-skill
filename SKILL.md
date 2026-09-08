@@ -10,6 +10,8 @@ disable-model-invocation: false
 
 # Browser Skill
 
+> **Deprecated and archived.** Use [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) instead: `brew install agent-browser && agent-browser install`.
+
 Chrome DevTools Protocol tools for agent-assisted web automation. Connect to Chrome on `:9222` with remote debugging.
 
 Scripts location: `scripts/` (relative to skill root)
